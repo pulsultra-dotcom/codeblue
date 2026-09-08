@@ -232,6 +232,14 @@ p:last-child{margin-bottom:0}
 
 /* ---------- place ---------- */
 .place{border:1px solid var(--steel);border-radius:var(--r);padding:26px}
+.lineway{
+  border-left:2px solid var(--neon-deep);
+  padding:2px 0 2px 16px;
+  font-size:.93rem;
+  color:var(--fog-dim);
+}
+.lineway a{color:var(--neon-hi);text-decoration:none;border-bottom:1px solid rgba(63,169,255,.4)}
+.lineway a:hover{border-bottom-color:var(--neon-hi)}
 .addr{font-size:1.1rem;color:var(--chalk);margin:0 0 8px}
 .b1{
   display:inline-block;font-family:"Barlow Condensed",sans-serif;
@@ -448,7 +456,8 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
   <section id="reserve">
     <p class="label">Reservation</p>
     <h2>席をとる</h2>
-    <p>席は5つ、定員になり次第しめます。入力したら公式LINEに送ってください。そこで確定します。</p>
+    <p>席は5つ、定員になり次第しめます。予約の取り方は2つあります。<strong style="color:var(--chalk);font-weight:500">下のフォームに入力するか、公式LINEのトークに直接送るか、どちらか一方でOKです。</strong>両方やる必要はありません。</p>
+    <p class="lineway">LINEで送るほうが早い方は、<a href="https://line.me/R/ti/p/@645cnutz" target="_blank" rel="noopener">公式LINE</a>に「お名前・区分・いる時間」を書いて送ってください。それで受け付けます。</p>
 
     <div class="form concrete">
       <form id="f" novalidate>
@@ -493,7 +502,7 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
       </form>
 
       <div class="ticket hidden" id="ticket">
-        <h3>この内容でお預かりします</h3>
+        <h3>この内容で受け付けました</h3>
         <dl>
           <div class="tline"><dt>お名前</dt><dd id="t-nm"></dd></div>
           <div class="tline"><dt>区分</dt><dd id="t-job"></dd></div>
@@ -502,15 +511,13 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
           <div class="tline"><dt>料金</dt><dd id="t-fee"></dd></div>
         </dl>
         <div class="step">
-          <strong style="color:var(--chalk)">あと2ステップで確定します</strong>
-          <ol>
-            <li>下のボタンで予約内容をコピー</li>
-            <li>公式LINEを登録して、そのまま貼って送信</li>
-          </ol>
+          <strong style="color:var(--chalk)">これで予約は完了です。</strong>
+          <p style="margin:8px 0 0">LINEで送り直す必要はありません。当日のご連絡をするので、公式LINEの登録だけお願いします。</p>
         </div>
-        <button type="button" class="btn ghost" id="copy">予約内容をコピー</button>
-        <a class="btn" id="line" href="#" style="text-decoration:none;text-align:center">公式LINEを登録して送る</a>
-        <button type="button" class="btn ghost" id="back" style="margin-top:12px">入力しなおす</button>
+        <a class="btn" id="line" href="#" style="text-decoration:none;text-align:center">公式LINEを登録する</a>
+        <button type="button" class="btn ghost" id="copy" style="margin-top:12px">予約内容をコピー</button>
+        <p style="font-size:.82rem;color:var(--fog-dim);margin:8px 0 0">※LINEでもひとこと伝えておきたい方だけ、コピーして送ってください。</p>
+        <button type="button" class="btn ghost" id="back" style="margin-top:16px">入力しなおす</button>
       </div>
       <iframe name="gf-sink" title="送信先" style="display:none;width:0;height:0;border:0"></iframe>
     </div>
