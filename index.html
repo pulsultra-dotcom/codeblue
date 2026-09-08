@@ -512,6 +512,7 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
         <a class="btn" id="line" href="#" style="text-decoration:none;text-align:center">公式LINEを登録して送る</a>
         <button type="button" class="btn ghost" id="back" style="margin-top:12px">入力しなおす</button>
       </div>
+      <iframe name="gf-sink" title="送信先" style="display:none;width:0;height:0;border:0"></iframe>
     </div>
   </section>
 
@@ -530,6 +531,41 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
 <script>
 /* 公式LINEの友だち追加URLをここに入れる（例: https://lin.ee/xxxxxxx） */
 var LINE_URL = 'PENDING';
+
+/* Googleフォーム連携。
+   action  … 送信用URL。viewform の末尾を formResponse に変えたもの
+             例 https://docs.google.com/forms/d/e/1FAIpQLxxxx/formResponse
+   entry.* … 各質問のID。viewform のHTMLから取り出す
+   ここが PENDING のままなら送信はスキップされ、コピー→LINE の導線だけ動く。 */
+var GFORM = {
+  action: 'PENDING',
+  name:   'entry.PENDING',
+  job:    'entry.PENDING',
+  time:   'entry.PENDING',
+  join:   'entry.PENDING',
+  fee:    'entry.PENDING'
+};
+
+function sendToSheet(row){
+  if (!GFORM.action || GFORM.action.indexOf('PENDING') !== -1) return false;
+  try {
+    var f = document.createElement('form');
+    f.action = GFORM.action;
+    f.method = 'POST';
+    f.target = 'gf-sink';
+    f.style.display = 'none';
+    Object.keys(row).forEach(function(k){
+      if (!GFORM[k] || GFORM[k].indexOf('PENDING') !== -1) return;
+      var i = document.createElement('input');
+      i.type = 'hidden'; i.name = GFORM[k]; i.value = row[k];
+      f.appendChild(i);
+    });
+    document.body.appendChild(f);
+    f.submit();
+    setTimeout(function(){ if (f.parentNode) f.parentNode.removeChild(f); }, 4000);
+    return true;
+  } catch (_) { return false; }
+}
 
 var OPEN = 11, CLOSE = 19;
 var RATE = { med:{h:1500,cap:5000,name:'医療・福祉'}, oth:{h:2000,cap:6000,name:'他職種'} };
@@ -590,6 +626,14 @@ form.addEventListener('submit', function(e){
     '時間：' + time,
     '参加する会：' + (joins.length ? joins.join(' / ') : '指定なし'),
     '料金：' + feeTxt].join('\n');
+
+  sendToSheet({
+    name: nm,
+    job:  RATE[job()].name,
+    time: time,
+    join: joins.length ? joins.join(' / ') : '指定なし',
+    fee:  feeTxt
+  });
 
   form.classList.add('hidden');
   ticket.classList.remove('hidden');
