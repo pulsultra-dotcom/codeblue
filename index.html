@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="9月23日(水)、渋谷の地下。医療と福祉で働く人が集まるカウンター、CODE BLUE。">
+<meta name="description" content="11月15日(日)、渋谷の地下。医療と福祉で働く人が集まるカウンター、CODE BLUE。">
 <meta property="og:title" content="CODE BLUE｜渋谷 B1F">
-<meta property="og:description" content="職場でも家でもない、3つ目の場所。9/23(水) 14:00-18:00、渋谷駅から徒歩8分。">
+<meta property="og:description" content="職場でも家でもない、3つ目の場所。11/15(日) 13:00-19:00、渋谷駅から徒歩8分。">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
@@ -353,7 +353,7 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
     </svg>
     <p class="jp-sub">職場でも家でもない、3つ目の場所。<br>医療と福祉で働く人のカウンター。</p>
     <div class="stamp">
-      <span class="d">9.23</span><span class="w">Wed</span><span class="t">14:00&ndash;18:00</span>
+      <span class="d">11.15</span><span class="w">Sun</span><span class="t">13:00&ndash;19:00</span>
     </div>
     <div class="descend" aria-hidden="true"></div>
   </header>
@@ -381,7 +381,7 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
     <h2>1日の流れ</h2>
     <div class="spine">
       <div class="row key">
-        <div class="time">14:00</div>
+        <div class="time">13:00</div>
         <div class="slot"><h3>オープン ／ 職場外に悩みをこぼす会</h3><p>開店と同時に始めます。職場では言えないことを、外に一度置いていく時間。</p></div>
       </div>
       <div class="row key">
@@ -393,7 +393,7 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
         <div class="slot"><h3>合流</h3><p>13時からの人も混ざって、ここが一番熱くなります。</p></div>
       </div>
       <div class="row">
-        <div class="time">18:00</div>
+        <div class="time">19:00</div>
         <div class="slot"><h3>クローズ</h3><p>途中入場・途中退店、どちらも自由です。</p></div>
       </div>
     </div>
@@ -429,7 +429,7 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
     <div class="board">
       <div class="brow head"><span class="who">区分</span><span>60分</span><span>フリータイム</span></div>
       <div class="brow"><span class="who">医療・福祉のお仕事の方</span><span class="amt">1,500<em>円</em></span><span class="amt">5,000<em>円</em></span></div>
-      <div class="brow"><span class="who">他職種の方</span><span class="amt">2,000<em>円</em></span><span class="amt">6,000<em>円</em></span></div>
+      <div class="brow"><span class="who">他職種・経営者の方</span><span class="amt">2,000<em>円</em></span><span class="amt">6,000<em>円</em></span></div>
     </div>
     <div class="incl">
       <span class="chip">ドリンク飲み放題</span>
@@ -468,7 +468,7 @@ footer{margin-top:56px;text-align:center;font-family:"Barlow Condensed",sans-ser
           <span class="flabel">お仕事<span class="req">Required</span></span>
           <div class="opts">
             <label class="opt"><input type="radio" name="job" value="med" checked><span class="on">医療・福祉</span><span class="sub">60分 1,500円</span></label>
-            <label class="opt"><input type="radio" name="job" value="oth"><span class="on">他職種</span><span class="sub">60分 2,000円</span></label>
+            <label class="opt"><input type="radio" name="job" value="oth"><span class="on">他職種・経営者</span><span class="sub">60分 2,000円</span></label>
           </div>
         </div>
 
@@ -571,8 +571,8 @@ function sendToSheet(row){
   } catch (_) { return false; }
 }
 
-var OPEN = 14, CLOSE = 18;
-var RATE = { med:{h:1500,cap:5000,name:'医療・福祉'}, oth:{h:2000,cap:6000,name:'他職種'} };
+var OPEN = 13, CLOSE = 19;
+var RATE = { med:{h:1500,cap:5000,name:'医療・福祉'}, oth:{h:2000,cap:6000,name:'他職種・経営者'} };
 
 var st = document.getElementById('st'), en = document.getElementById('en');
 function hh(n){ return String(n).padStart(2,'0') + ':00'; }
@@ -624,7 +624,7 @@ form.addEventListener('submit', function(e){
   document.getElementById('t-join').textContent = joins.length ? joins.join(' / ') : '指定なし';
   document.getElementById('t-fee').textContent = feeTxt;
 
-  summary = ['【CODE BLUE 9/23 予約】',
+  summary = ['【CODE BLUE 11/15 予約】',
     'お名前：' + nm,
     '区分：' + RATE[job()].name,
     '時間：' + time,
